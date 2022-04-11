@@ -1,0 +1,66 @@
+<p>tutorial-details works!</p>
+<div style="width: 400px; margin: auto">
+  <div *ngIf="currentTutorial" class="edit-form">
+    <h4>Tutorial</h4>
+    <form action="">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          [(ngModel)]="currentTutorial.title"
+        />
+      </div>
+      <div class="form-group mt-3">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          [(ngModel)]="currentTutorial.description"
+        />
+      </div>
+      <div class="form-group mt-3 mb-3">
+        <label for="status"> <strong>Status</strong> </label>
+        {{ currentTutorial.published ? "published" : "Pending" }}
+      </div>
+    </form>
+
+    <button
+      class="btn btn-primary me-2"
+      *ngIf="currentTutorial.published"
+      (click)="updatePublished(false)"
+    >
+      UnPublish
+    </button>
+
+    <button
+      class="btn btn-primary me-2"
+      *ngIf="!currentTutorial.published"
+      (click)="updatePublished(true)"
+    >
+      Publish
+    </button>
+
+    <button class="btn btn-danger ml-5 me-2" (click)="deleteTutorial()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      (click)="updateTutorial()"
+    >
+      Update
+    </button>
+    <p class="mt-3">{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Cannot access this tutoria...</p>
+  </div>
+</div>
